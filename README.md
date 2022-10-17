@@ -1,3 +1,2 @@
 # test_set
-for use of study
-DO NOT COPY WITHOUT AGREEMENT OF THE AUTHOR
+for use of studying
