@@ -14,7 +14,7 @@ class do:
             x,y=place
             print('pic_locate:',place)
             pg.moveTo(x,y, 2, pg.easeInOutQuad)
-            time.sleep(3)
+            time.sleep(2)
             pg.click()
             return 1
         else:
@@ -28,7 +28,7 @@ class do:
             #print('pic',pic,'not on screen')
             return 0
     def down(self):
-        pg.move(0,15,0.2)
+        pg.move(0,20,0.2)
     def arounder(self):
         sizex,sizey=pg.size()
         pg.moveTo(sizex-100,sizey-100,2,pg.easeInOutQuad)
@@ -45,3 +45,18 @@ class do:
         self.arounder()
         if a==0:
             a=self.find_mover('closed_video.png')
+    def entry(self):
+        self.find_mover('head.png')
+        self.find_mover('entry.png')
+        if not microphone:
+            self.find_mover('om.png')
+        if not video:
+            self.find_mover('ov.png')
+        self.find_mover('num.png')
+        self.down()
+        self.click()
+        self.typewrite(self.code)
+        self.find_mover('name.png')
+        self.down()
+        self.click()
+        self.typewrite(self.name)
