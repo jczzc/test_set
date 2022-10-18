@@ -9,6 +9,7 @@ class do:
         self.microphone=microphone
         self.video=video
     def find_mover(self,pic):
+        print('pic:',pic)
         place=pg.locateCenterOnScreen(pic)
         if place!=None:
             x,y=place
@@ -20,6 +21,7 @@ class do:
         else:
             print('pic',pic,'not on screen')
             return 0
+        self.center()
     def is_on(pic):
         place=pg.locateCenterOnScreen(pic)
         if place!=None:
@@ -33,18 +35,25 @@ class do:
         sizex,sizey=pg.size()
         pg.moveTo(sizex-100,sizey-100,2,pg.easeInOutQuad)
         pg.moveTo(75,75,1,pg.easeInOutQuad)
+        self.center()
     def click(self):
         pg.click()
     def quit(self):
         pass
     def videochange(self):
-        self.find_mover('full_screen.png')
-        self.find_mover('head.png')
-        self.arounder()
-        a=self.find_mover('opened_video.png')
-        self.arounder()
-        if a==0:
-            a=self.find_mover('closed_video.png')
+        a=self.find_mover('full_screen.png')
+        b=self.find_mover('head.png')
+        if a==0 or b==0:
+            self.arounder()
+            a=self.find_mover('opened_video.png')
+            #self.arounder()
+            if a==0:
+                self.arounder()
+                a=self.find_mover('closed_video.png')
+        self.center()
+    def center(self):
+        sizex,sizey=pg.size()
+        pg.moveTo(sizex//2,sizey//2,2,pg.easeInOutQuad)
     def entry(self):
         self.find_mover('head.png')
         self.find_mover('entry.png')
@@ -60,3 +69,13 @@ class do:
         self.down()
         self.click()
         self.typewrite(self.name)
+        self.center()
+if __name__=='__main__':
+    print(int(time.time())^23054035)
+    a=do('a','0')
+    #a.find_mover('head.png')
+    #a.arounder()
+    a.videochange()
+    #time.sleep(5)
+    #a.videochange()
+    #a.down()
